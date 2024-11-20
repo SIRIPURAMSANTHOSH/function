@@ -1,0 +1,47 @@
+def calculate_grade(score):
+    if 90 <= score <= 100:
+        return "A+"
+    elif 80 <= score < 90:
+        return "A"
+    elif 70 <= score < 80:
+        return "B"
+    elif 60 <= score < 70:
+        return "C"
+    elif 50 <= score < 60:
+        return "D"
+    else:
+        return "F"
+
+def main():
+    print("Student Grades and Performance Calculator")
+    print("----------------------------------------")
+
+    student_name = input("Enter the student's name: ")
+    num_subjects = int(input("Enter the number of subjects: "))
+
+    subjects = {}
+    total_score = 0
+
+    for _ in range(num_subjects):
+        subject_name = input("Enter the subject name: ")
+        score = float(input(f"Enter the score for {subject_name} (0-100): "))
+        if score < 0 or score > 100:
+            print("Invalid score! Please enter a value between 0 and 100.")
+            return
+        grade = calculate_grade(score)
+        subjects[subject_name] = {"Score": score, "Grade": grade}
+        total_score += score
+
+    average_score = total_score / num_subjects
+    overall_grade = calculate_grade(average_score)
+
+    print("\nStudent Report")
+    print(f"Name: {student_name}")
+    print("Subject-wise Grades:")
+    for subject, details in subjects.items():
+        print(f"  {subject}: Score = {details['Score']:.2f}, Grade = {details['Grade']}")
+    print(f"Average Score: {average_score:.2f}")
+    print(f"Overall Grade: {overall_grade}")
+
+if __name__ == "__main__":
+    main()
